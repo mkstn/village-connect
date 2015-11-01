@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Local Tweet Map : Visualizer by Sahil Dua</title>
+		<meta name="author" content="sahildua2305">
+		<meta property="og:url" content="http://sahildua.com/local-tweet-map/"/>
+		<meta property="og:site_name" content="Sahil Dua (sahildua2305)"/>
+		<meta property="og:title" content="Local Tweet Map"/>
+		<meta property="og:type" content="website"/>
+		<meta property="og:image" content="http://sahildua.com/local-tweet-map/local-tweet-map.JPG"/>
+		<meta property="og:description" content="See what people in your area are tweeting"/>
+		<meta name="description" content="See what people in your area are tweeting">
+		<meta name="keywords" content="sahildua, sahildua2305, sahil2305dua, API, Chrome Extension, Twitter, PHP Twitter API, Javascript Twitter API, Sahil, Sahil Dua, Netaji Subhas Institute, New Delhi, Punjab, topper, sahil nsit, sahil collegespace, sahil developer, API developer, MC Jolly Sahil, local tweet map, tweet map, view nearby tweets, see tweets on map">
+
+		<style>
+			html, body, #map-canvas{height:100%;margin:0;padding:0;font-family:Calibri,sans-serif; }
+			#map-canvas{height:80%}
+			.footer{text-align:center;padding:0.5%}
+			.title{margin:1% 0% 0% 0%;}
+			.info{}
+		</style>
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB6oyKPyKj1JsXHLaKtvEFIlhOVgtfT8aE"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+		<script>
+			// global variables to be assigned values, later on, in functions
+			var latitude=0, longitude=0, map;
+			// queue to store the markers for purpose of deleting older ones when length exceeds 100
+			var markersList=[];
+			// variable for storing the value of latest tweet id_str for sending along with next API call.
+			var since_id='0';
+			var locationFound = false;
+			
+			function plotRecentTweets(){
+				var URL = 'search.php?since_id='+since_id+'&latitude='+latitude+'&longitude='+longitude;
+				$.ajax({
+					type: 'GET',
+					url: URL,
+
+					success: function(data){
+						var h1 = document.getElementById("title");
+						h1.innerHTML = "Local Tweet Map";
+						var x = JSON.parse(data);
+						var len = x.length;
+						console.log(x);
+						
+						var infoWindow = new google.maps.InfoWindow();
+						
+						for(var j in x){
+							// change in index made to push the oldest tweet first in the queue `markersList`
+							var i = len - j - 1;
+							if(x[i].coordinates == null)
+								continue;
+							var longitude = x[i].coordinates.coordinates[0];
+							var latitude = x[i].coordinates.coordinates[1];
+							var screen_name = x[i].user.screen_name;
+							var tweetText = x[i].text;
+							var profileImageURL = x[i].user.profile_image_url;
+							
+							// get tweet id of the latest tweet retrieved
+							since_id = x[i].id_str;
+							
+							marker = new google.maps.Marker({
+								position: new google.maps.LatLng(latitude, longitude),
+								map: map,
+								icon: profileImageURL,
+								title: screen_name
+							});
+							markersList.push(marker);
+
+							google.maps.event.addListener(marker, 'click', (function(marker, i) {
+								return function() {
+									var infoWindowText = "<a href='https://twitter.com/"+x[i].user.screen_name+"' target='_blank'>@"+x[i].user.screen_name+"</a>: "+x[i].text;
+									infoWindow.setContent(infoWindowText);
+									infoWindow.open(map, marker);	
+								}
+							})(marker, i));
+						}
+						// remove the oldest tweets and their corresponding markers from map if length of queue exceeds 100.
+						while(markersList.length>100){
+							(markersList.shift()).setMap(null);
+						}
+					},
+					error: function(){
+						// show error message
+						console.log("No response from the server!");
+					}
+				});
+			}
+			
+			function initialize(){
+				if (navigator.geolocation) {
+					navigator.geolocation.getCurrentPosition(function(position){
+						var h1 = document.getElementById("title");
+						h1.innerHTML = "Fetching your location...";
+						latitude = position.coords.latitude;
+						longitude = position.coords.longitude;
+						var myLatlng = new google.maps.LatLng(latitude, longitude);
+						var mapOptions = {
+							zoom: 14,
+							center: myLatlng
+						}
+						map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+						
+						var marker = new google.maps.Marker({
+							position: myLatlng,
+							map: map,
+							title:"Your Location"
+						});
+						var circleOptions = {
+							strokeColor: '#B0C4DE',
+							strokeOpacity: 0.8,
+							strokeWeight: 2,
+							fillColor: '#B0C4DE',
+							fillOpacity: 0.35,
+							map: map,
+							center: myLatlng,
+							radius: 2609.34
+						};
+						var circle = new google.maps.Circle(circleOptions);
+						h1.innerHTML = "Getting tweets from people near you...";
+						plotRecentTweets();
+					},
+					function(msg){
+						var s = document.getElementById("status");
+						s.innerHTML = (typeof msg == "string") ? "<h1 style='text-align:center;'>"+msg+"</h1>" : "<h1>Failed to access your location!</h1><p>Please change your browser location settings and allow this website to access your location.</p>";
+					});
+				} else { 
+					// show error message
+				}
+			}
+			google.maps.event.addDomListener(window, 'load', initialize);
+			
+			setInterval(function(){
+				plotRecentTweets();
+			}, 30000);
+			
+		</script>
+	</head>
+	<body>
+		<h1 style="text-align:center;" class="title" id="title">Local Tweet Map</h1>
+		<p style="text-align:center;" class="info">See what people in your area are tweeting(Click on the profile pic of the user to see the contents of tweet)</p>
+		<div id="status" style='text-align:center;'></div>
+		<div id="map-canvas"></div>
+		<div class="footer">
+			Developed by <a href="http://sahildua.com" target="_blank">Sahil Dua</a>
+		</div>
+	</body>
+</html>
