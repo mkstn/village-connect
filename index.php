@@ -6,24 +6,6 @@
 
 <?php
 
-	echo '<h1>inout</h1><hr>';
-
-	echo '<a href="videos/show.php">Videos</a><br>';
-	echo '<a href="message.php">Messages</a><br>';
-	
-	if(loggedin()){
-		echo '<a href="logout.php">Logout</a><br>';	
-	} else {
-		echo '<a href="login.php">Sign In</a><br>';	
-	}
-
-	if(isadmin()){
-		echo '<a href="websites/download-website.php">add a Website</a><br>';
-	}
-
-	echo '<a href="raise-request.php">Raise a Request</a><br>';
-
-	echo '<hr>';
 
 	$path = "websites/";
 	$files = scandir($path);
@@ -55,15 +37,18 @@
                                 	<div class="panel-body" id="noti-box1" style="overflow: hidden; width: auto; height: 400px;">
                                     
 <?php
-	$query = "SELECT M.message, M.timestamp, U.name FROM messages M INNER JOIN users U ON M.sender_id = U.id WHERE M.reciever_id = 0 ORDER BY M.timestamp DESC LIMIT 10";
-	$query_run = mysqli_query($connection, $query);
-	while($query_row = mysqli_fetch_assoc($query_run)){
-		echo '<div class="alert alert-info">
+
+
+	$path = "websites";
+	$files = scandir($path);
+	$files = array_diff($files, array('..', '.', 'log.file', 'download-website.php'));
+	foreach ($files as $file) {
+	    // echo $file . '<br>';
+		echo '<div class="alert alert-danger">
                 <button data-dismiss="alert" class="close close-sm" type="button">
                     <i class="fa fa-times"></i>
                 </button>
-                ' . $query_row['message'] . '<br>
-                <strong>' . $query_row['name'] . '</strong><br>
+                <a href="' . $path . '/' . $file . '"><strong>' . $file . '</strong></a>
             </div>';
 	}
                                     
@@ -81,7 +66,7 @@
 	$query = "SELECT M.message, M.timestamp, U.name FROM messages M INNER JOIN users U ON M.sender_id = U.id WHERE M.reciever_id = 0 ORDER BY M.timestamp DESC LIMIT 10";
 	$query_run = mysqli_query($connection, $query);
 	while($query_row = mysqli_fetch_assoc($query_run)){
-		echo '<div class="alert alert-info">
+		echo '<div class="alert alert-warning">
                 <button data-dismiss="alert" class="close close-sm" type="button">
                     <i class="fa fa-times"></i>
                 </button>
