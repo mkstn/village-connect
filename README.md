@@ -1,4 +1,4 @@
-# InOut Connectify (Village Connectify)
+# Village Connectconnec
 <!--## Inspiration-->
 
 
@@ -12,7 +12,7 @@ If 100 people from a village want to access some particular educational videos, 
 Let's consider a scenario, where someone wants to access some videos which aren't already available on the central hub. In such a case, anyone connected on the local network can raise a request for any new material and the person handling the central hub will be able to download new stuff that he/she wants to make available to people.
 This interweb can also be used to lodge complaints to the village head over the same locally shared network.
 ##### Communicating with each other over the interweb, without internet
-Village Connectify also enables villagers to broadcast (send to all) messages to all other people on the network. They can also communicate with each other via private messaging, that too without using internet at all.
+Village Connect also enables villagers to broadcast (send to all) messages to all other people on the network. They can also communicate with each other via private messaging, that too without using internet at all.
 ##### Accessing cached websites over the interweb, without internet
 ![add website](http://sahildua.com/inout-img/website.png)
 All connected users can also access websites which the admin has already cached on it's own system. Users can also request for a new website to be cached. We have also added a web interface utility for the admin, to recursively download the entire requested website.
@@ -33,7 +33,7 @@ To moderate the content being sent by users over messages, we have designed our 
 
 <!--## Accomplishments that I'm proud of-->
 
-## What's next for Village Connectify
+## What's next for Village Connect
 ##### Automated Content Moderation
 As of now, there has to be one person controlling each central hub. Going forward, we can even eliminate this person's role to certain limit by adding automated content moderation using machine learning algorithms. Training of the model can be done by observing the patterns and user actions taken by this person when using in manual mode of moderation.
 ##### 2-way content sharing
