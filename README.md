@@ -1,4 +1,4 @@
-# Village Connectconnec
+# Village Connect
 <!--## Inspiration-->
 
 
