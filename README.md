@@ -3,7 +3,7 @@
 
 
 ## What it does
-In simpler terms, it creates a local interweb which enables the rural areas' residents to consume internet data without even getting connected to the internet.
+In simpler terms, the idea is to create a local interweb which enables the rural areas' residents to consume internet data without even getting connected to the internet.
 ##### Watching educational stuff on the interweb, without internet (on client side)
 ![view video](http://sahildua.com/inout-img/videos.png)
 If 100 people from a village want to access some particular educational videos, rather than making all of 100 of them to download those videos at their own ends, central hub will have those videos saved on the system. Anyone who is connected to the local network of the central hub, will be able to access and watch those videos as if they were present on their own local system.
