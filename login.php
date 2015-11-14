@@ -11,8 +11,8 @@ if(loggedin())
 	header('Location: index.php');
 
 if(isset($_POST['submit'])){
-	$username = strip_tags($_POST['username']);
-	$password = md5(strip_tags($_POST['pass']));	
+	$username = mysql_real_escape_string(strip_tags(addslashes($_POST['username'])));
+	$password = md5(mysql_real_escape_string(strip_tags(addslashes($_POST['pass']))));	
 	
 	$query = "SELECT * FROM `users` WHERE `username`='$username' AND `password`='$password' LIMIT 1";
 	
