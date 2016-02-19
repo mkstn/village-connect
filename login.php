@@ -1,4 +1,10 @@
 <?php
+/**
+ * @Author: Prabhakar Gupta
+ * @Date:   2016-02-16 01:57:09
+ * @Last Modified by:   Prabhakar Gupta
+ * @Last Modified time: 2016-02-20 05:25:25
+ */
 
 require_once 'inc/func.inc.php';
 require_once 'inc/connection.inc.php';
@@ -31,24 +37,38 @@ if(isset($_POST['submit'])){
 			header('Location: index.php');
 	}
 }
+
 ?>
 <!DOCTYPE html>
 <html>
 <head>
-<?php include 'layout/meta.inc.php'; ?>
+<?php
+
+	include 'layout/meta.inc.php';
+
+?>
 </head>
 <body class="skin-black">
-<?php include 'layout/header.inc.php'; ?>
-    <div class="wrapper row-offcanvas row-offcanvas-left">
-<?php include 'layout/leftpanel.inc.php'; ?>
+<?php
 
+	include 'layout/header.inc.php';
+
+?>
+    <div class="wrapper row-offcanvas row-offcanvas-left">
+<?php
+
+	include 'layout/leftpanel.inc.php';
+
+?>
 	    <aside class="right-side">
 	        <section class="content">
 	            <div class="row" style="margin-bottom:5px;">
 <?php 
+
 	if(isset($error)){
 		echo $error_message[$error];
 	}
+
 ?>	
             <div class="col-lg-8 col-lg-offset-2">
             	<section class="panel">
@@ -69,7 +89,9 @@ if(isset($_POST['submit'])){
         </div>
     </div>
 <?php
+
     include 'layout/scripts.inc.php';
+
 ?>
 </body>
 </html>

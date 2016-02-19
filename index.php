@@ -1,33 +1,36 @@
 <?php
-	require 'inc/func.inc.php';
-	require 'inc/connection.inc.php';
+/**
+ * @Author: Prabhakar Gupta
+ * @Date:   2016-02-16 01:57:09
+ * @Last Modified by:   Prabhakar Gupta
+ * @Last Modified time: 2016-02-20 05:23:25
+ */
+
+	require_once 'inc/func.inc.php';
+	require_once 'inc/connection.inc.php';
+
 ?>
-<!--
-
-<?php
-
-
-	$path = "websites/";
-	$files = scandir($path);
-	$files = array_diff($files, array('..', '.', 'log.file', 'download-website.php'));
-	foreach ($files as $file) {
-	    echo $file . '<br>';
-	}
-?>
-
--->
-
-
 <!DOCTYPE html>
 <html>
 <head>
-<?php include 'layout/meta.inc.php'; ?>
+<?php
+
+	include 'layout/meta.inc.php';
+
+?>
 </head>
 <body class="skin-black">
-<?php include 'layout/header.inc.php'; ?>
-    <div class="wrapper row-offcanvas row-offcanvas-left">
-<?php include 'layout/leftpanel.inc.php'; ?>
+<?php
 
+	include 'layout/header.inc.php';
+
+?>
+    <div class="wrapper row-offcanvas row-offcanvas-left">
+<?php
+
+	include 'layout/leftpanel.inc.php';
+
+?>
 	    <aside class="right-side">
 	        <section class="content">
 	            <div class="row" style="margin-bottom:5px;">
@@ -43,7 +46,6 @@
 	$files = scandir($path);
 	$files = array_diff($files, array('..', '.', 'log.file', 'download-website.php'));
 	foreach ($files as $file) {
-	    // echo $file . '<br>';
 		echo '<div class="alert alert-danger">
                 <button data-dismiss="alert" class="close close-sm" type="button">
                     <i class="fa fa-times"></i>
@@ -55,7 +57,8 @@
 ?>
 
 
-                                </div><div class="slimScrollBar" style="width: 5px; position: absolute; top: 0px; opacity: 0.4; display: none; border-radius: 5px; z-index: 99; right: 1px; height: 213.333px; background: rgb(0, 0, 0);"></div>
+                                </div>
+                                <div class="slimScrollBar" style="width: 5px; position: absolute; top: 0px; opacity: 0.4; display: none; border-radius: 5px; z-index: 99; right: 1px; height: 213.333px; background: rgb(0, 0, 0);"></div>
                         </section>
 	            	</div>
 	            	<div class="col-lg-3">
@@ -63,8 +66,11 @@
                             <header class="panel-heading">bulletin board</header>
                             	<div class="panel-body" id="noti-box2" style="overflow: hidden; width: auto; height: 400px;">
 <?php
+
+	// showing latest 10 announcements
 	$query = "SELECT M.message, M.timestamp, U.name FROM messages M INNER JOIN users U ON M.sender_id = U.id WHERE M.reciever_id = 0 ORDER BY M.timestamp DESC LIMIT 10";
 	$query_run = mysqli_query($connection, $query);
+	
 	while($query_row = mysqli_fetch_assoc($query_run)){
 		echo '<div class="alert alert-warning">
                 <button data-dismiss="alert" class="close close-sm" type="button">
@@ -88,8 +94,10 @@
                             </header>
                         	<div class="panel-body" id="noti-box3" style="overflow: hidden; width: auto; height: 400px;">
 <?php
+
 	$query = "SELECT * FROM `requests` ORDER BY `last_updated_tx` DESC LIMIT 10";
 	$query_run = mysqli_query($connection, $query);
+
 	while($query_row = mysqli_fetch_assoc($query_run)){
 		echo '<div class="alert alert-info">
                 <button data-dismiss="alert" class="close close-sm" type="button">
@@ -111,7 +119,9 @@
 	</div>
 
 <?php
+    
     include 'layout/scripts.inc.php';
+    
 ?>
 </body>
 </html>
