@@ -12,6 +12,6 @@
 <link href="assests/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
 <link href="assests/css/ionicons.min.css" rel="stylesheet" type="text/css" />
 <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
-<link href="assests/css/style.css" rel="stylesheet" type="text/css" />
+<link href="assests/css/style.min.css" rel="stylesheet" type="text/css" />
 
 <link rel="shortcut icon" href="assests/icon/JYBjRZ5C_400x400.png">
