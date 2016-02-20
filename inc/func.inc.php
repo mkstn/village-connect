@@ -3,7 +3,7 @@
  * @Author: Prabhakar Gupta
  * @Date:   2016-02-16 01:57:09
  * @Last Modified by:   Prabhakar Gupta
- * @Last Modified time: 2016-02-20 05:43:00
+ * @Last Modified time: 2016-02-20 07:22:50
  */
 
 
@@ -28,7 +28,7 @@ function return_display_time($time){
  */
 function duckduckgoreturn($keyword){
 	$searched_term = str_replace(" ", "+", $keyword);
-	$search_url = "http://api.duckduckgo.com/?q=format=json&" . $searched_term;
+	$search_url = "http://api.duckduckgo.com/?format=json&q=" . $searched_term;
 	
 	$json_results = json_decode(curl_URL_call($search_url), true);
 	return $json_results['AbstractText'];
@@ -57,8 +57,8 @@ function curl_URL_call($url){
  * @param  integer 				$message_id 
  * @return boolean
  */
-function delete_message($connection, $message_id){
-	$query = "DELETE FROM `messages` WHERE `m_id`='$message_id'";
+function delete_request($connection, $requests_raised_id){
+	$query = "UPDATE `requests_raised` SET `status`='1' WHERE `requests_raised_id`='$requests_raised_id'";
 	return (bool)(mysqli_query($connection, $query));
 }
 
