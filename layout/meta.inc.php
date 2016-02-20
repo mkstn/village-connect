@@ -1,18 +1,16 @@
 <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
-<meta name="description" content="Developed By M Abdur Rokib Promy">
-<meta name="keywords" content="Admin, Bootstrap 3, Template, Theme, Responsive">
+<meta name="description" content="">
+<meta name="keywords" content="village connect">
+<meta name="author" content="Prabhakar Gupta and Sahil Dua">
 
-<title>Village Connectify | SWAG</title>
+<title>Village Connect | Connect Rural India</title>
 
 <link href="assests/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 <link href="assests/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
 <link href="assests/css/ionicons.min.css" rel="stylesheet" type="text/css" />
-<link href="assests/css/morris/morris.css" rel="stylesheet" type="text/css" />
-<link href="assests/css/jvectormap/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" />
-<link href="assests/css/datepicker/datepicker3.css" rel="stylesheet" type="text/css" />
-<link href="assests/css/daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css" />
-<link href="assests/css/iCheck/all.css" rel="stylesheet" type="text/css" />
 <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
 <link href="assests/css/style.css" rel="stylesheet" type="text/css" />
 

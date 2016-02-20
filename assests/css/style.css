@@ -10,14 +10,16 @@
     Core: General style
 ----------------------------
 */
+
+@import url(google_fonts.roboto.css);
+
 html,
 body {
   overflow-x: hidden!important;
-  /*font-family: 'Source Sans Pro', sans-serif;*/
-  font-family: 'Lato', sans-serif;
   -webkit-font-smoothing: antialiased;
   min-height: 100%;
   background: #f1f2f7;
+  font-family: 'Roboto', sans-serif;
 }
 a {
   color: #3c8dbc;
@@ -116,22 +118,6 @@ body.fixed .wrapper {
   overflow: auto;
 }
 /* Utility */
-/* H1 - H6 font */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-.h1,
-.h2,
-.h3,
-.h4,
-.h5,
-.h6 {
-  /*font-family: 'Source Sans Pro', sans-serif;*/
-  font-family: 'Lato', sans-serif;
-}
 /* Page Header */
 .page-header {
   margin: 10px 0 20px 0;
@@ -701,8 +687,7 @@ body > .header .logo {
   text-align: center;
   padding: 0 10px;
   width: 220px;
-  font-family: 'Kaushan Script', cursive;
-  font-weight: 500;
+  font-weight: 900;
   height: 50px;
   display: block;
 }
@@ -3590,7 +3575,6 @@ color: #666;
     color:#6d6d6d;
     text-transform:uppercase;
     padding:40px 30px;
-    font-family:'Open Sans',sans-serif;
     font-weight:600;
 }
 .reg-earn-stat span {
@@ -3600,7 +3584,6 @@ color: #666;
 }
 .loc-earn-stat {
     text-align:center;
-    font-family:'Open Sans',sans-serif;
     font-weight:600;
     margin-bottom:30px;
 }
