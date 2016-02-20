@@ -1,2 +1,8 @@
+# mysql database connection file ignored
 connection.inc.php
+
+# videos sub-folders ignored
 **/videos/
+
+# websites sub-folders ignored
+**/websites/
