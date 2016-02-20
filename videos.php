@@ -1,17 +1,27 @@
 <?php
-	require 'inc/func.inc.php';
+/**
+ * @Author: Prabhakar Gupta
+ * @Date:   2016-02-16 01:57:09
+ * @Last Modified by:   Prabhakar Gupta
+ * @Last Modified time: 2016-02-20 06:03:01
+ */
+
+	require_once 'inc/func.inc.php';
+
 	$icons_random = array(
 		'paperclip',
 		'file-o',
 	);
-?>
 
+?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-<?php include 'layout/meta.inc.php'; ?>
+<?php
 
+	include 'layout/meta.inc.php';
+
+?>
 <style>
 	video {
 	  width: 100%    !important;
@@ -19,17 +29,21 @@
 	}
 </style>
 </head>
-
 <body class="skin-black">
-<?php include 'layout/header.inc.php'; ?>
-    <div class="wrapper row-offcanvas row-offcanvas-left">
-<?php include 'layout/leftpanel.inc.php'; ?>
+<?php
 
+	include 'layout/header.inc.php';
+
+?>
+    <div class="wrapper row-offcanvas row-offcanvas-left">
+<?php
+
+	include 'layout/leftpanel.inc.php';
+
+?>
 	    <aside class="right-side">
 	        <section class="content">
 	            <div class="row" style="margin-bottom:5px;">
-
-
 <?php
 
 	$path = 'videos';
@@ -43,8 +57,8 @@
 
 	foreach ($files as $file) {
 		if(is_dir($path . '/' . $file)){
-?>
 
+?>
 		<div class="col-md-2">
             <a href="?v=<?php echo $file; ?>">
             	<div class="stat">
@@ -55,11 +69,11 @@
 	            </div>
 	        </a>
         </div>
-
 <?php
-		} else {
-?>
 
+		} else {
+
+?>
 			<div class="col-md-4">
 				<div class="embed-responsive embed-responsive-16by9">
 					<video controls>
@@ -67,19 +81,20 @@
 					</video>
 				</div>
 			</div>
-
 <?php
+
 		}
 	}
-?>
 
+?>
 	            </div>
 	        </section>
 	    </aside>
 	</div>
-
 <?php
+
     include 'layout/scripts.inc.php';
+
 ?>
 </body>
 </html>
