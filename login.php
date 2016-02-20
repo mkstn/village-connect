@@ -3,7 +3,7 @@
  * @Author: Prabhakar Gupta
  * @Date:   2016-02-16 01:57:09
  * @Last Modified by:   Prabhakar Gupta
- * @Last Modified time: 2016-02-20 05:25:25
+ * @Last Modified time: 2016-02-20 05:45:27
  */
 
 require_once 'inc/func.inc.php';
@@ -17,15 +17,16 @@ if(loggedin())
 	header('Location: index.php');
 
 if(isset($_POST['submit'])){
-	$username = mysqli_real_escape_string($connection, strip_tags(addslashes($_POST['username'])));
-	$password = md5(mysqli_real_escape_string($connection, strip_tags(addslashes($_POST['pass']))));	
+	$username = clean_string($_POST['username'], true);
+	$password = encrypt_data(clean_string($_POST['pass']));	
 	
 	$query = "SELECT * FROM `users` WHERE `username`='$username' AND `password`='$password' LIMIT 1";
+	$query_run = mysqli_query($connection, $query);
 	
-	if(mysqli_num_rows(mysqli_query($connection, $query)) == 0 ){
+	if(mysqli_num_rows($query_run) == 0){
 		$error = 0;
 	} else {
-		$query_row = mysqli_fetch_assoc(mysqli_query($connection, $query));
+		$query_row = mysqli_fetch_assoc($query_run);
 
 		$_SESSION['id'] = $query_row['id'];
 		$_SESSION['username'] = $query_row['username'];

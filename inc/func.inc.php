@@ -3,7 +3,7 @@
  * @Author: Prabhakar Gupta
  * @Date:   2016-02-16 01:57:09
  * @Last Modified by:   Prabhakar Gupta
- * @Last Modified time: 2016-02-20 05:39:33
+ * @Last Modified time: 2016-02-20 05:43:00
  */
 
 
@@ -60,4 +60,30 @@ function curl_URL_call($url){
 function delete_message($connection, $message_id){
 	$query = "DELETE FROM `messages` WHERE `m_id`='$message_id'";
 	return (bool)(mysqli_query($connection, $query));
+}
+
+
+/**
+ * returns string which is safe for database and without any spaces
+ * @param  string 	$str 	dirty string
+ * @param  boolean 	$mode 	if mode is true, then remove white spaces else not
+ * @return string 			clean string
+ */
+function clean_string($str, $mode=false){
+	$temp_str = htmlspecialchars(strip_tags(strtolower(trim($str))));
+
+	if($mode)
+		return str_replace(" ", "", $temp_str);
+	else
+		return $temp_str;
+}
+
+
+/**
+ * function to put one way encrption over a string
+ * @param  string 	$str 
+ * @return string 			encrypted string
+ */
+function encrypt_data($str){
+	return md5($str);
 }
